@@ -1,1 +1,8 @@
-<p>pets works!</p>
+<div class="row">
+  <div class="column">
+    <nx03-pets-list [pets]="pets$ | async"></nx03-pets-list>
+  </div>
+  <div class="column">
+    <nx03-pet-detail></nx03-pet-detail>
+  </div>
+</div>
