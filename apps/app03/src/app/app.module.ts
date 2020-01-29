@@ -3,8 +3,11 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from '@nx03/material';
+import { RoutingModule } from './routing.module';
 
 import { AppComponent } from './app.component';
+import { UiLoginModule } from '@nx03/ui-login'
+
 
 @NgModule({
   declarations: [
@@ -13,7 +16,9 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    RoutingModule,
+    UiLoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
