@@ -1,2 +1,10 @@
-<h1>App03 ----</h1>
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+  <span>Pets</span>
+  <span class="fill-space"></span>
+  <span>
+    <button mat-raised-button routerLink="/login">Login</button>
+  </span>
+</mat-toolbar>
+<div class="app-content">
+  <router-outlet></router-outlet>
+</div>
