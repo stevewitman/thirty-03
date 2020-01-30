@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'nx03-pet-detail',
@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pet-detail.component.scss']
 })
 export class PetDetailComponent implements OnInit {
+  currentPet;
+
+  @Input() set pet(value) {
+    this.currentPet = Object.assign({}, value);
+  };
 
   constructor() { }
 

@@ -1,8 +1,13 @@
 <div class="row">
   <div class="column">
-    <nx03-pets-list [pets]="pets$ | async"></nx03-pets-list>
+    <nx03-pets-list
+      [pets]="pets$ | async"
+      (selected)=selectPet($event)
+    ></nx03-pets-list>
   </div>
   <div class="column">
-    <nx03-pet-detail></nx03-pet-detail>
+    <nx03-pet-detail
+      [pet]="selectedPet"
+    ></nx03-pet-detail>
   </div>
 </div>

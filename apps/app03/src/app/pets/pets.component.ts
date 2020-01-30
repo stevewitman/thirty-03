@@ -8,6 +8,7 @@ import { PetsService, Pet } from '@nx03/core-data';
 })
 export class PetsComponent implements OnInit {
   pets$;
+  selectedPet;
 
   constructor(private petsService: PetsService) { }
 
@@ -17,6 +18,10 @@ export class PetsComponent implements OnInit {
 
   getPets() {
     this.pets$ = this.petsService.getPets();
+  }
+
+  selectPet(pet) {
+    this.selectedPet = pet;
   }
 
 }
