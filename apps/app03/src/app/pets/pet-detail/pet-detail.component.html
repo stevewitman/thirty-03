@@ -2,7 +2,7 @@
   <mat-card-header>
     <mat-card-title>Pet Details</mat-card-title>
   </mat-card-header>
-  <form [formGroup]="form" (submit)="saved.emit(form.value)">
+  <form [formGroup]="form" (submit)="onSubmit()">
     <mat-card-content>
       <div>
         <p>Pet Id: {{ currentPet.id }}</p>
@@ -11,9 +11,9 @@
             matInput
             placeholder="Title"
             type="text"
-            formControlName="title"
-            [value]="currentPet.title">
-            <mat-error *ngIf="title.invalid">
+            name="title"
+            formControlName="title">
+            <mat-error *ngIf="form.get('title').hasError('required')">
               Pet title is Required
             </mat-error>
         </mat-form-field>
@@ -22,8 +22,11 @@
             matInput
             placeholder="Description"
             type="text"
-            formControlName="details"
-            [value]="currentPet.details">
+            name="details"
+            formControlName="details">
+            <mat-error *ngIf="form.get('details').hasError('required')">
+              Pet details is Required
+            </mat-error>
         </mat-form-field>
       </div>
       <div align="end">

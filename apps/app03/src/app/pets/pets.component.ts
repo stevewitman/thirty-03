@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PetsService, Pet } from '@nx03/core-data';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'nx03-pets',
@@ -9,10 +10,15 @@ import { PetsService, Pet } from '@nx03/core-data';
 export class PetsComponent implements OnInit {
   pets$;
   selectedPet;
+  form: FormGroup;
 
-  constructor(private petsService: PetsService) { }
+  constructor(
+    private petsService: PetsService,
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit() {
+    this.initForm();
     this.getPets();
     this.resetPet();
   }
@@ -22,7 +28,9 @@ export class PetsComponent implements OnInit {
   }
 
   selectPet(pet) {
+    console.log('HERE', pet)
     this.selectedPet = pet;
+    this.form.patchValue(pet);
   }
 
   resetPet() {
@@ -66,6 +74,14 @@ export class PetsComponent implements OnInit {
 
   cancel() {
     this.resetPet();
+  }
+
+  private initForm() {
+    this.form = this.fb.group({
+      id: null,
+      title: ['', Validators.compose([Validators.required])],
+      details: ['', Validators.compose([Validators.required])]
+    })
   }
 
 }

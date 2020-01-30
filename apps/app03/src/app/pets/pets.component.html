@@ -9,6 +9,7 @@
   <div class="column">
     <nx03-pet-detail
       [pet]="selectedPet"
+      [form]="form"
       (saved)="savePet($event)"
       (cancelled)="cancel()"
     ></nx03-pet-detail>

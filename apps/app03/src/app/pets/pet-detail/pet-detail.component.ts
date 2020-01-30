@@ -8,8 +8,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class PetDetailComponent implements OnInit {
   currentPet;
-  form: FormGroup;
   originalTitle;
+
+  @Input() form: FormGroup;
 
   @Input() set pet(value) {
     if (value) this.originalTitle = value.title;
@@ -22,24 +23,10 @@ export class PetDetailComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.initForm()
   }
 
-  private initForm() {
-    this.form = this.fb.group({
-      title: ['', [
-        Validators.required,
-      ]],
-      details: [''],
-    })
-  }
-
-  get title() {
-    return this.form.get('title');
-  }
-
-  get details() {
-    return this.form.get('details');
+  onSubmit() {
+    this.saved.emit(this.form.value);
   }
 
 }
