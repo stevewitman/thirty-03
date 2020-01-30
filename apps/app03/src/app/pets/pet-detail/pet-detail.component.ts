@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'nx03-pet-detail',
@@ -7,14 +9,35 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PetDetailComponent implements OnInit {
   currentPet;
+  form: FormGroup;
 
   @Input() set pet(value) {
     this.currentPet = Object.assign({}, value);
   };
 
-  constructor() { }
+  @Output() saved = new EventEmitter();
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.initForm()
+  }
+
+  private initForm() {
+    this.form = this.fb.group({
+      title: ['', [
+        Validators.required,
+      ]],
+      details: [''],
+    })
+  }
+
+  get title() {
+    return this.form.get('title');
+  }
+
+  get details() {
+    return this.form.get('details');
   }
 
 }

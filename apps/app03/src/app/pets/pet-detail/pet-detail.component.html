@@ -2,5 +2,36 @@
   <mat-card-header>
     <mat-card-title>Pet Details</mat-card-title>
   </mat-card-header>
-  {{ currentPet.title }}
+  <form [formGroup]="form">
+    <mat-card-content>
+      <div>
+        <p>Pet Id: {{ currentPet.id }}</p>
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            placeholder="Title"
+            type="text"
+            formControlName="title"
+            [value]="currentPet.title">
+            <mat-error *ngIf="title.invalid">
+              Pet title is Required
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            placeholder="Description"
+            type="text"
+            formControlName="details"
+            [value]="currentPet.details">
+        </mat-form-field>
+      </div>
+      <div align="end">
+        <mat-card-actions>
+          <!-- <button mat-raised-button color="default" type="button" (click)="cancelled.emit(currentPet)">Clear</button> -->
+          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Save</button>
+        </mat-card-actions>
+      </div>
+    </mat-card-content>
+  </form>
 </mat-card>
