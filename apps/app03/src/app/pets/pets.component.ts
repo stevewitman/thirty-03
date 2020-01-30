@@ -14,6 +14,7 @@ export class PetsComponent implements OnInit {
 
   ngOnInit() {
     this.getPets();
+    this.resetPet();
   }
 
   getPets() {
@@ -22,6 +23,49 @@ export class PetsComponent implements OnInit {
 
   selectPet(pet) {
     this.selectedPet = pet;
+  }
+
+  resetPet() {
+    const emptyPet: Pet = {
+      id: null,
+      title: '',
+      details: ''
+    }
+    this.selectPet(emptyPet);
+  }
+
+  updatePet(pet) {
+    this.petsService.updatePet(pet)
+      .subscribe(result => {
+        this.getPets();
+        this.resetPet();
+      });
+  }
+
+  createPet(pet) {
+    this.petsService.createPet(pet)
+      .subscribe(result => {
+        this.getPets();
+        this.resetPet();
+      });
+  }
+
+  deletePet(pet) {
+    this.petsService.deletePet(pet.id)
+      .subscribe(result => this.getPets());
+  }
+
+  savePet(pet) {
+    console.log('SavePet METHOD', pet)
+    if (!pet.id) {
+      this.createPet(pet);
+    } else {
+      this.updatePet(pet);
+    }
+  }
+
+  cancel() {
+    this.resetPet();
   }
 
 }

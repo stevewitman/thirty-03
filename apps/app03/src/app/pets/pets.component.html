@@ -3,11 +3,14 @@
     <nx03-pets-list
       [pets]="pets$ | async"
       (selected)=selectPet($event)
+      (deleted)=deletePet($event)
     ></nx03-pets-list>
   </div>
   <div class="column">
     <nx03-pet-detail
       [pet]="selectedPet"
+      (saved)="savePet($event)"
+      (cancelled)="cancel()"
     ></nx03-pet-detail>
   </div>
 </div>

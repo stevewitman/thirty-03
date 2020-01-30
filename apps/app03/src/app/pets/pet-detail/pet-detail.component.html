@@ -2,7 +2,7 @@
   <mat-card-header>
     <mat-card-title>Pet Details</mat-card-title>
   </mat-card-header>
-  <form [formGroup]="form">
+  <form [formGroup]="form" (submit)="saved.emit(form.value)">
     <mat-card-content>
       <div>
         <p>Pet Id: {{ currentPet.id }}</p>
@@ -28,7 +28,7 @@
       </div>
       <div align="end">
         <mat-card-actions>
-          <!-- <button mat-raised-button color="default" type="button" (click)="cancelled.emit(currentPet)">Clear</button> -->
+          <button mat-raised-button color="default" type="button" (click)="cancelled.emit(currentPet)">Clear</button>
           <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Save</button>
         </mat-card-actions>
       </div>
